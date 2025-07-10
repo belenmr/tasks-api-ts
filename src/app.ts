@@ -1,17 +1,17 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import cors from 'cors';
+import taskRoutes from './routes/taskRoutes';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
-// Test
-app.get('/', (req: Request, res: Response) => {
-  res.send('Esto es una prueba');
-});
+app.use('/api/tasks', taskRoutes);
 
 // Server
 app.listen(PORT, () => {
-  console.log(`Server is listening on port: ${PORT}`);
+	console.log(`Server is listening on port: ${PORT}`);
 });
